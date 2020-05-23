@@ -1,0 +1,55 @@
+#modal {
+
+    text-align: center;
+    #editTitle{
+        text-align: center;
+        color: white
+    }
+    position: fixed;
+    z-index: 9999;
+    background-color: rgb(113, 135, 221);
+    width: 300px;
+    height: 300px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 5px;
+
+
+
+
+    .editInp{
+        padding: 5px !important;
+        width: 80%;
+        margin: 0px auto 10px;
+        background-color: #2F3237;
+        border: 2px solid #7187DD;
+        border-radius: 5px;
+        color: white;
+        font-size: 20px;
+        &:focus {
+            border: 2px solid #7187DD !important;
+            background-color: #3D4358;
+            outline: none;
+        }
+
+    }
+
+        
+    .editBtn, .cancelBtn {
+        padding: 5px;
+        background-color: #2F3237;
+    color: white !important;
+    border: 2px solid #7187DD;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 4px;
+    font-size: 20px;
+
+
+    &:hover{
+        background-color: #3D4358;
+    }
+
+    }
+}

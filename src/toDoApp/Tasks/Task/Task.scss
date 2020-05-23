@@ -1,0 +1,26 @@
+.task {
+    background-color: rgba(113, 135, 221, .2);
+    color: white;
+    font-size: 19px;
+    margin: 10px 0;
+    display: flex;
+    padding: 10px;
+
+    .taskText{ 
+        width: 90%;
+    }
+
+    .taskDelete, .taskEdit{
+        background-color: #7187DD;
+        margin: 0px 2px;
+        padding: 2px 10px;
+        cursor: pointer;
+        border-radius: 5px;
+        border: 1px solid transparent;
+        font-weight: bold;
+        &:hover {
+            background-color: transparent;
+            border: 1px solid #7187DD;
+        }
+    }
+}
