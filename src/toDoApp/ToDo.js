@@ -36,8 +36,9 @@ export class ToDo extends Component {
 	addTaskHandler = (e, showTasks) => {
 		e.preventDefault();
 
+		if (this.state.task.trim() === '') return;
 		// create a task object
-		let task = { id: Math.random() * 511512, title: this.state.task, done: false };
+		let task = { id: Math.random() * 511512, title: this.state.task, checked: false };
 
 		// get tasks arr, push the new task, set the tasks again in localStorage
 
@@ -109,6 +110,21 @@ export class ToDo extends Component {
 		showTasks();
 	};
 
+	checkTask = taskId => {
+		let tasks = [ ...this.getTasksFromLocalStorage() ];
+		const finishedTaskIndex = tasks.findIndex(task => task.id === taskId);
+
+		let finishedTask = tasks[finishedTaskIndex];
+
+		finishedTask.checked = finishedTask.checked ? false : true;
+
+		tasks[finishedTaskIndex] = finishedTask;
+
+		localStorage.setItem('tasks', JSON.stringify(tasks));
+
+		this.showTasks();
+	};
+
 	openModal = () => {
 		this.setState({ modalOpened: true });
 	};
@@ -143,6 +159,7 @@ export class ToDo extends Component {
 					showTasks={this.showTasks}
 					openModal={this.openModal}
 					getSingleTask={this.getSingleTask}
+					checkTask={this.checkTask}
 				/>
 
 				{/* modal */}

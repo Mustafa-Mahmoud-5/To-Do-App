@@ -11,10 +11,10 @@ function Task(props) {
 
 	return (
 		<div className='task'>
-			<p className={`taskText ${checked}`}>{title}</p>
+			<p className={`taskText ${checked && 'checked'}`}>{title}</p>
 			<div className='controls'>
 				<label className='container'>
-					<input type='checkbox' />
+					<input type='checkbox' checked={checked} onChange={() => props.checkTask(id)} />
 					<span className='checkmark' />
 				</label>
 				<div className='taskEdit' onClick={openModalAndGetTask}>
