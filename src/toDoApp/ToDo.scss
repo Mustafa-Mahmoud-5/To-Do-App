@@ -7,7 +7,7 @@
     #tasksDoneText {
         margin-top: 10px;
         color: white;
-        font-size: 30px;
+        font-size: 25px;
         text-align: center;
     }
     .title {
@@ -51,6 +51,22 @@
         }
 
             
+        }
+    }
+
+
+    #clearTasks {
+        background-color: #7187DD;
+        height: 30px;
+        margin-top: 20px;
+        cursor: pointer;
+        border-radius: 5px;
+        border: 1px solid transparent;
+        font-weight: bold;
+        text-align: center;
+        &:hover {
+            background-color: transparent;
+            border: 1px solid #7187DD;
         }
     }
 

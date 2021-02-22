@@ -51,6 +51,8 @@ export class ToDo extends Component {
 
 		localStorage.setItem('tasks', JSON.stringify(updatedTasks));
 
+		this.clearInputText();
+
 		// show tasks as a callback
 		showTasks();
 	};
@@ -152,6 +154,15 @@ export class ToDo extends Component {
 		return counter;
 	};
 
+	clearTasks = () => {
+		localStorage.removeItem('tasks');
+		this.setState({ tasks: [] });
+	};
+
+	clearInputText = () => {
+		this.setState({ task: '' });
+	};
+
 	render() {
 		const leftTasks = this.getNumberOfLeftTaks();
 
@@ -161,7 +172,13 @@ export class ToDo extends Component {
 				<h1 className='title'>Add Task</h1>
 				{/* input part */}
 				<form className='form' onSubmit={e => this.addTaskHandler(e, this.showTasks)}>
-					<input type='text' className='formInput' required onChange={this.writeTaskHandler} />
+					<input
+						type='text'
+						className='formInput'
+						required
+						onChange={this.writeTaskHandler}
+						value={this.state.task}
+					/>
 					<button type='submit' className='formButton'>
 						Add
 					</button>
@@ -169,7 +186,7 @@ export class ToDo extends Component {
 				{/* todos Section */}
 
 				<div id='tasksDoneText'>
-					{!this.state.tasks.length ? 'Good Job, You are all set for today.' : `${leftTasks} Task(s) left`}
+					{!this.state.tasks.length ? 'Well done, You did great for today.' : `${leftTasks} Task(s) left`}
 				</div>
 
 				<Tasks
@@ -189,6 +206,12 @@ export class ToDo extends Component {
 						editTask={this.editTask}
 					/>
 				)}
+
+				{this.state.tasks.length && !leftTasks ? (
+					<div onClick={this.clearTasks} id='clearTasks'>
+						Clear Tasks
+					</div>
+				) : null}
 			</div>
 		);
 	}
