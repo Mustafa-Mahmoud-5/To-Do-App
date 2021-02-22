@@ -138,12 +138,27 @@ export class ToDo extends Component {
 		this.showTasks();
 	}
 
+	getNumberOfLeftTaks = () => {
+		const tasks = this.state.tasks;
+
+		let counter = 0;
+
+		tasks.forEach(task => {
+			if (!task.checked === true) {
+				counter++;
+			}
+		});
+
+		return counter;
+	};
+
 	render() {
+		const leftTasks = this.getNumberOfLeftTaks();
+
 		return (
 			<div id='ToDoApp'>
 				{/* title */}
 				<h1 className='title'>Add Task</h1>
-
 				{/* input part */}
 				<form className='form' onSubmit={e => this.addTaskHandler(e, this.showTasks)}>
 					<input type='text' className='formInput' required onChange={this.writeTaskHandler} />
@@ -151,8 +166,12 @@ export class ToDo extends Component {
 						Add
 					</button>
 				</form>
-
 				{/* todos Section */}
+
+				<div id='tasksDoneText'>
+					{!this.state.tasks.length ? 'Good Job, You are all set for today.' : `${leftTasks} Task(s) left`}
+				</div>
+
 				<Tasks
 					tasks={this.state.tasks}
 					deleteTask={this.deleteTask}
@@ -161,7 +180,6 @@ export class ToDo extends Component {
 					getSingleTask={this.getSingleTask}
 					checkTask={this.checkTask}
 				/>
-
 				{/* modal */}
 				{this.state.modalOpened && (
 					<Modal
